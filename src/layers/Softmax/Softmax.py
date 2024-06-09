@@ -10,8 +10,8 @@ class Softmax(Layer):
 
     def forward(self, X):
         self.X = X
-        exp_X = np.exp(X - np.max(X, axis=0, keepdims=True))  # Numerical stability
-        self.out = exp_X / np.sum(exp_X, axis=0, keepdims=True)
+        exp_X = np.exp(X - np.max(X, axis=1, keepdims=True))  # Numerical stability
+        self.out = exp_X / np.sum(exp_X, axis=1, keepdims=True)
         return self.out
 
     def backward(self, dy):
