@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 from numpy.testing import assert_array_equal
 
-from src.layers.Cee.CrossEntropyError import CrossEntropyError
+from src.errors.Cee.CrossEntropyError import CrossEntropyError
 
 
 class MyTestCase(unittest.TestCase):

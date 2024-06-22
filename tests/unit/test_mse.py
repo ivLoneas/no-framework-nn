@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 from numpy.testing import assert_array_equal
 
-from src.layers.Mse.Mse import Mse
+from src.errors.Mse.Mse import Mse
 
 
 class MyTestCase(unittest.TestCase):
