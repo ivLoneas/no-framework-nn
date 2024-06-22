@@ -15,9 +15,14 @@ class Softmax(Layer):
         return self.out
 
     def backward(self, dy):
-        dX = np.zeros_like(self.X)
-        for i in range(dy.shape[1]):  # Iterate over the batch
-            y = self.out[:, i].reshape(-1, 1)
-            jacobian = np.diagflat(y) - np.dot(y, y.T)
-            dX[:, i] = np.dot(jacobian, dy[:, i])
-        return dX
+        # Reshape self.out and dy for broadcasting
+        softmax_out = self.out[:, :, np.newaxis]
+        dy = dy[:, np.newaxis, :]
+
+        # Compute the Jacobian matrix efficiently
+        jacobian = softmax_out * (np.eye(self.out.shape[1])[np.newaxis, :, :] - softmax_out.transpose(0, 2, 1))
+
+        # Compute the gradient
+        gradient = np.einsum('ijk,ik->ij', jacobian, dy.squeeze(axis=1))
+
+        return gradient
