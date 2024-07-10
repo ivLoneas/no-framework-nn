@@ -26,3 +26,6 @@ class Softmax(Layer):
         gradient = np.einsum('ijk,ik->ij', jacobian, dy.squeeze(axis=1))
 
         return gradient
+
+    def updateWeights(self, optimizer, dy):
+        return optimizer.updateSoftmax(self, dy)

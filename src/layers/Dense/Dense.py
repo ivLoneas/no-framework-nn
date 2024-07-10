@@ -23,3 +23,6 @@ class Dense(Layer):
         dW = np.dot(self.X.T, dy_activated)
         db = np.sum(dy_activated, axis=0)
         return dX, dW, db
+
+    def updateWeights(self, optimizer, dy):
+        optimizer.updateDense(self, dy)
