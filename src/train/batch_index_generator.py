@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class ButchIndexGenerator:
+class BatchIndexGenerator:
     def __init__(self, n_size, batch_size):
         self.n_size = n_size
         self.batch_size = batch_size
