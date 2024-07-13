@@ -17,12 +17,12 @@ class TestDenseLayer(unittest.TestCase):
 
     def test_forward(self):
         # Perform forward pass
-        output = self.dense_layer.forward(self.X)
+        output = self.dense_layer.forward_train(self.X)
         self.assertEqual(output.shape, (5, self.output_size), "Forward pass output shape is incorrect")
 
     def test_backward(self):
         # Perform forward pass first
-        self.dense_layer.forward(self.X)
+        self.dense_layer.forward_train(self.X)
         # Perform backward pass
         dX, dW, db = self.dense_layer.backward(self.dy)
         self.assertEqual(dX.shape, (5, self.input_size), "Backward pass dX shape is incorrect")

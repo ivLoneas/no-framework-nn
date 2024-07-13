@@ -13,9 +13,12 @@ class Dense(Layer):
         self.b = np.zeros(self.output_size)
         self.activation = activation
 
-    def forward(self, X):
+    def forward_train(self, X):
         self.X = X
-        return self.activation.forward(np.dot(X, self.W) + self.b)
+        return self.activation.forward_train(np.dot(X, self.W) + self.b)
+
+    def predict(self, X):
+        return self.forward_train(X)
 
     def backward(self, dy):
         dy_activated = self.activation.backward(dy)
@@ -25,4 +28,4 @@ class Dense(Layer):
         return dX, dW, db
 
     def updateWeights(self, optimizer, dy):
-        optimizer.updateDense(self, dy)
+        return optimizer.updateDense(self, dy)

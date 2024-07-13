@@ -13,8 +13,8 @@ class MyTestCase(unittest.TestCase):
         x1 = np.array([[1, -1]])
         x2 = np.array([[1, 1, 1],
                        [1, 1, 1]])
-        output1 = self.relu.forward(x1)
-        output2 = self.relu.forward(x2)
+        output1 = self.relu.forward_train(x1)
+        output2 = self.relu.forward_train(x2)
 
         assert_array_equal(output1, np.array([[1, 0]]), "Forward pass should have no negative values")
         assert_array_equal(output2, x2, "Forward pass output on regular case should not have positive values incorrect")
@@ -24,7 +24,7 @@ class MyTestCase(unittest.TestCase):
 
     def testBackward(self):
         x1 = np.array([[1, -1]])
-        self.relu.forward(x1)
+        self.relu.forward_train(x1)
         dy1 = np.array([[1, 1]])
         output1 = self.relu.backward(dy1)
 

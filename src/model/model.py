@@ -3,7 +3,11 @@ from abc import abstractmethod
 
 class Layer:
     @abstractmethod
-    def forward(self, *args, **kwargs):
+    def forward_train(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def predict(self, X):
         pass
 
     @abstractmethod

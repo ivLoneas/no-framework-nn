@@ -1,5 +1,4 @@
 import numpy as np
-
 from src.model.model import Layer
 
 
@@ -8,9 +7,12 @@ class Dropout(Layer):
         self.p = p
         self.mask = None
 
-    def forward(self, X):
+    def forward_train(self, X):
         self.mask = (np.random.rand(*X.shape) > self.p) / (1 - self.p)
         return X * self.mask
+
+    def predict(self, X):
+        return X
 
     def backward(self, dY):
         return dY * self.mask
