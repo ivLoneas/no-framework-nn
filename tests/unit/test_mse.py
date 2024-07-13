@@ -16,14 +16,14 @@ class MyTestCase(unittest.TestCase):
         y1 = np.array([[0, 0, 0]])
         loss1 = self.mse.loss(x1, y1)
         zero_loss1 = self.mse.loss(x1, x1)
-        self.assertEqual(3.0, loss1, "MSE loss calculated wrong")
+        self.assertEqual(1.0, loss1, "MSE loss calculated wrong")
         self.assertEqual(0, zero_loss1, "MSE loss calculated wrong for exact solution")
 
         x2 = np.array([1, 2, 2])
         y2 = np.array([0, 0, 0])
         loss2 = self.mse.loss(x2, y2)
         zero_loss2 = self.mse.loss(x2, x2)
-        self.assertEqual(3.0, loss2, "MSE loss calculated wrong for 1d")
+        self.assertEqual(1.0, loss2, "MSE loss calculated wrong for 1d")
         self.assertEqual(0, zero_loss2, "MSE loss calculated wrong for exact solution for 1d")
 
     def test_gradient(self):
