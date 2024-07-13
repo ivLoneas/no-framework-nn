@@ -33,7 +33,6 @@ class Optimizer:
 
     def __init__(self):
         self.model = None
-        self.loss = None
 
     def step_batch(self, dy):
         dy_tmp = dy
