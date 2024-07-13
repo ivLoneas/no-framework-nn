@@ -16,3 +16,6 @@ class Dropout(Layer):
 
     def backward(self, dY):
         return dY * self.mask
+
+    def updateWeights(self, optimizer, dy):
+        return optimizer.updateDropout(self, dy)

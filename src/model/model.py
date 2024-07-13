@@ -35,10 +35,10 @@ class Optimizer:
         self.model = None
         self.loss = None
 
-    def step(self, dy):
+    def step_batch(self, dy):
         dy_tmp = dy
         for layer in self.model.layers[::-1]:
-            dy_tmp = layer.updateWeights(self, dy)
+            dy_tmp = layer.updateWeights(self, dy_tmp)
 
     @abstractmethod
     def updateSoftmax(self, layer, dy):
@@ -47,3 +47,32 @@ class Optimizer:
     @abstractmethod
     def updateDense(self, layer, dy):
         pass
+
+    @abstractmethod
+    def updateDropout(self, layer, dy):
+        pass
+
+    @abstractmethod
+    def updateIdentity(self, layer, dy):
+        pass
+
+    @abstractmethod
+    def updateRelu(self, layer, dy):
+        pass
+
+
+class NN:
+    def __init__(self, *args):
+        self.layers = args
+
+    def train_forward(self, X):
+        y = X
+        for layer in self.layers:
+            y = layer.forward_train(y)
+        return y
+
+    def predict(self, X):
+        y = X
+        for layer in self.layers:
+            y = layer.predict(y)
+        return y

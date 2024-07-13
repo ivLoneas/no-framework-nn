@@ -14,3 +14,6 @@ class Identity(Layer):
 
     def backward(self, dy):
         return dy
+
+    def updateWeights(self, optimizer, dy):
+        return optimizer.updateIdentity(self, dy)

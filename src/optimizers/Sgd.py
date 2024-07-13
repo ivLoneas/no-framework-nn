@@ -15,3 +15,12 @@ class Sgd(Optimizer):
 
     def updateSoftmax(self, layer, dy):
         return layer.backward(dy)
+
+    def updateDropout(self, layer, dy):
+        return layer.backward(dy)
+
+    def updateIdentity(self, layer, dy):
+        return dy
+
+    def updateRelu(self, layer, dy):
+        return layer.backward(dy)

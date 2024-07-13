@@ -17,3 +17,6 @@ class Relu(Layer):
 
     def backward(self, dy):
         return dy * (self.X > 0)
+
+    def updateWeights(self, optimizer, dy):
+        return optimizer.updateRelu(self, dy)
