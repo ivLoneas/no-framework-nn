@@ -24,3 +24,9 @@ class Sgd(Optimizer):
 
     def updateRelu(self, layer, dy):
         return layer.backward(dy)
+
+    def updateBatchnorm(self, layer, dy):
+        dgamma, dbeta, dX = layer.backward(dy)
+        layer.gamma -= self.learning_rate * dgamma
+        layer.beta -= self.learning_rate * dbeta
+        return dX

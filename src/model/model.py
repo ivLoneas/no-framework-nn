@@ -59,6 +59,10 @@ class Optimizer:
     def updateRelu(self, layer, dy):
         pass
 
+    @abstractmethod
+    def updateBatchnorm(self, layer, dy):
+        pass
+
 
 class NN:
     def __init__(self, *args):
